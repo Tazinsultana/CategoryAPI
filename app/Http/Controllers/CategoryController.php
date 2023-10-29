@@ -65,7 +65,7 @@ class CategoryController extends Controller
         // dd($request->all());
         $request->validate(
             [
-                'title' => 'required|unique:categories,title' .$request->up_id,
+                'title' => 'required|unique:categories,title,' .$request->id,
 
             ],
             [

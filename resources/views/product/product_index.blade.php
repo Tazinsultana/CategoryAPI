@@ -42,9 +42,9 @@
 
                                 <td>
                                     <a href=""class="btn btn-success edit_modal" data-bs-toggle="modal"
-                                        data-bs-target="#updateModal" data-id="">Edit</a>
+                                        data-bs-target="#updateModal" data-id="{{ $product->id }}">Edit</a>
 
-                                    <a href="" class="btn btn-danger delete_modal" data-id="">Delete</a>
+                                    <a href="" class="btn btn-danger delete_modal" data-id="{{ $product->id }}">Delete</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -62,7 +62,6 @@
 
     </div>
     @include('product.product_modal')
-    @include('product.update_modal')
     @include('product.product_ajax')
 
 

@@ -9,16 +9,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="errMsgContainer">
+                    {{-- <div class="errMsgContainer">
 
-                    </div>
+                    </div> --}}
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name">
 
                     </div>
                     <div class="mb-3">
-                        <label for="price" class="form-label">Product Category</label>
+                        <label for="product_cat" class="form-label">Product Category</label>
                         <input type="text" class="form-control" id="product_cat" name="product_cat">
                     </div>
 
