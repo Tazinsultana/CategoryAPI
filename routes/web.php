@@ -12,8 +12,9 @@ use App\Http\Controllers\CategoryController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-// Route::post('/category',[CategoryController::class,'Index']);
+Route::get('/',[CategoryController::class,'index'])->name('index');
+Route::post('/add',[CategoryController::class,'addlist'])->name('add.list');
+Route::get('/edit',[CategoryController::class,'Editlist'])->name('edit.list');
+Route::put('/update',[CategoryController::class,'updatelist'])->name('update.list');
+Route::delete('delete',[CategoryController::class,'deletelist'])->name('delete.list');
+Route::get('search',[CategoryController::class,'SearchList'])->name('search.list');
