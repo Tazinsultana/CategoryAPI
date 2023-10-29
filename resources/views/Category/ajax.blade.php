@@ -30,27 +30,8 @@
                     if (res.status == 'success') {
                         $('#addmodal').modal('hide');
                         $('#add')[0].reset();
-                        // $('.table').load(location.href + ' .table');
-                        search();
-                        Command: toastr["success"]("List Added Successfully!", "Success")
+                        $('.table').load(location.href + ' .table');
 
-                        toastr.options = {
-                            "closeButton": true,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": true,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
                     }
 
                 },
@@ -122,28 +103,8 @@
                     if (res.status == 'success') {
                         $('#updatemodal').modal('hide');
                         $('#update')[0].reset();
-                        // $('.table').load(location.href + ' .table');
-                        search();
-                        Command: toastr["success"]("Updated Successfully!", "Success")
+                        $('.table').load(location.href + ' .table');}
 
-                        toastr.options = {
-                            "closeButton": true,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": true,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
-                    }
 
                 },
                 error: function(err) {
@@ -180,27 +141,8 @@
                     success: function(res) {
                         if (res.status == 'success') {
 
-                            // $('.table').load(location.href + ' .table');
-                            search();
-                            Command: toastr["success"]("Delete Sccessfully!", "Success")
+                            $('.table').load(location.href + ' .table');
 
-                            toastr.options = {
-                                "closeButton": true,
-                                "debug": false,
-                                "newestOnTop": false,
-                                "progressBar": true,
-                                "positionClass": "toast-top-right",
-                                "preventDuplicates": false,
-                                "onclick": null,
-                                "showDuration": "300",
-                                "hideDuration": "1000",
-                                "timeOut": "5000",
-                                "extendedTimeOut": "1000",
-                                "showEasing": "swing",
-                                "hideEasing": "linear",
-                                "showMethod": "fadeIn",
-                                "hideMethod": "fadeOut"
-                            }
                         }
 
                     }
@@ -210,76 +152,7 @@
             }
         })
 
-        //    Live Search
-        function search(page = 0) {
-            let search = $('#search').val();
-            console.log(search);
-            $.ajax({
 
-                url: "{{ route('search.list') }}",
-                method: "GET",
-                data: {
-                    search,
-                    page
-                },
-                success: function(res) {
-                    // console.log(res);
-                    const search_result = res.data;
-                    console.log(search_result);
-                    let r_res = '';
-                    $.each(search_result, function(key, item) {
-                        r_res += `
-                                 <tr>
-                                    <th scope="row">${key+1}</th>
-                                    <td>${item.title}</td>
-                                    <td> <span class="badge ${item.is_active ? 'text-bg-success' : 'text-bg-danger'}"> ${item.is_active ? 'Active' : 'InActive'}</span> </td>
-
-                                  <td>
-                                        <a href="#" class="btn btn-warning upate_modal_form"
-                                            data-bs-toggle="modal" data-bs-target="#updatemodal"
-                                            data-id="${item.id}">Edit
-
-                                        </a>
-
-                                        <a href="#" class="btn btn-danger delete_modal"
-                                            data-id="${item.id}">
-                                            Delete
-                                        </a>
-                                    </td>
-                                </tr>
-
-                        `
-                    })
-
-                    $('#todo_body').html(r_res);
-
-
-                    // modify pagination for searching
-                    let pagination='';
-                    for(let page=1;page<=res.total_page;page++){
-                        pagination+=`<a href="" class="btn btn-sm btn-secondary pagination_item  " data-page="${page-1}"> ${page} </a>`;
-                    }
-                    $('#pagination_container').html(pagination)
-
-                }
-            })
-
-        }
-        $(document).on('keyup', function(e) {
-            e.preventDefault();
-            search();
-
-
-        })
-
-
-
-        // for pagination
-        $(document).on('click', '.pagination_item', function(e) {
-            e.preventDefault();
-            const page = $(this).data('page')
-            search(page)
-        })
 
 
     });

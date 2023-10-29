@@ -17,4 +17,4 @@ Route::post('/add',[CategoryController::class,'addlist'])->name('add.list');
 Route::get('/edit',[CategoryController::class,'Editlist'])->name('edit.list');
 Route::put('/update',[CategoryController::class,'updatelist'])->name('update.list');
 Route::delete('delete',[CategoryController::class,'deletelist'])->name('delete.list');
-Route::get('search',[CategoryController::class,'SearchList'])->name('search.list');
+// Route::get('search',[CategoryController::class,'SearchList'])->name('search.list');

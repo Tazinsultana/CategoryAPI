@@ -29,8 +29,7 @@
                 <div style="display:flex;justify-content:end">
                     <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addmodal">Add</a>
                 </div>
-                <input type="text" name="search" id="search" class="mb-3 my-3 form-control"
-                    placeholder="Search Here..">
+
                 <div class="table-data">
 
                     <table class="table my-3">
@@ -42,15 +41,15 @@
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody id="todo_body">
-                            @foreach ($todo as $key => $todos)
+                        <tbody >
+                            @foreach ($category as $key => $categories)
                                 <tr>
                                     <th scope="row">{{ $key + 1 }}</th>
-                                    <td>{{ $todos->title }}</td>
+                                    <td>{{ $categories->title }}</td>
 
                                     <td>
 
-                                        @if ($todos->is_active)
+                                        @if ($categories->is_active)
                                             <span class="badge text-bg-success">Active</span>
                                         @else
                                             <span class="badge text-bg-danger">InActive</span>
@@ -60,14 +59,14 @@
                                     <td>
                                         <a href="#" class="btn btn-warning upate_modal_form"
                                             data-bs-toggle="modal" data-bs-target="#updatemodal"
-                                            data-id="{{ $todos->id }}">
+                                            data-id="{{ $categories->id }}">
 
                                             Edit
                                         </a>
 
 
                                         <a href="#" class="btn btn-danger delete_modal"
-                                            data-id="{{ $todos->id }}">
+                                            data-id="{{ $categories->id }}">
                                             Delete
                                         </a>
                                     </td>
@@ -79,12 +78,7 @@
 
                 </div>
                 </table>
-                <div id="pagination_container" class="d-flex gap-1">
-                    @for ($page = 1; $page <= $total_page; $page++)
-                        <a href="" class="btn btn-sm btn-secondary pagination_item  "
-                            data-page="{{ $page - 1 }}"> {{ $page }} </a>
-                    @endfor
-                </div>
+
 
 
             </div>
@@ -93,7 +87,7 @@
     @include('Category.add_modal')
     @include('Category.update_modal')
     @include('Category.ajax')
- 
+
 
 </body>
 
