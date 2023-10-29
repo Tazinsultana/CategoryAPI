@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,9 +13,16 @@ use App\Http\Controllers\CategoryController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/',[CategoryController::class,'index'])->name('index');
+Route::get('/category',[CategoryController::class,'index'])->name('index');
 Route::post('/add',[CategoryController::class,'addlist'])->name('add.list');
 Route::get('/edit',[CategoryController::class,'Editlist'])->name('edit.list');
 Route::put('/update',[CategoryController::class,'updatelist'])->name('update.list');
 Route::delete('delete',[CategoryController::class,'deletelist'])->name('delete.list');
 // Route::get('search',[CategoryController::class,'SearchList'])->name('search.list');
+
+Route::get('/product',[ProductController::class,'Index'])->name('index');
+Route::post('/add-product',[ProductController::class,'AddProduct'])->name('add.product');
+Route::get('/edit-product',[ProductController::class,'EditProduct'])->name('edit.product');
+Route::put('/update-product',[ProductController::class,'UpdateProduct'])->name('update.product');
+Route::delete('/delete-product',[ProductController::class,'DeleteProduct'])->name('delete.product');
+
