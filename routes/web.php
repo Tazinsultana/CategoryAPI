@@ -22,9 +22,10 @@ Route::delete('delete',[CategoryController::class,'deletelist'])->name('delete.l
 
 Route::get('/product',[ProductController::class,'Index'])->name('index.product');
 Route::post('/add-product',[ProductController::class,'AddProduct'])->name('add.product');
-Route::put('/update-product',[ProductController::class,'Update']);
-Route::delete('/delete-product',[ProductController::class,'Delete'])->name('delete.product');
 Route::get('/edit-product',[ProductController::class,'EditProduct'])->name('edit.product');
+Route::put('/update-product',[ProductController::class,'Update'])->name('update.product');
+Route::delete('/delete-product',[ProductController::class,'Delete'])->name('delete.product');
+
 
 
 

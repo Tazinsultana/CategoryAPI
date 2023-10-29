@@ -52,5 +52,86 @@
         });
 
 
+        // for edit
+        $(document).on('click','.edit_product',function(e){
+
+            e.preventDefault();
+            let id=$(this).data('id');
+            console.log(id);
+
+            $.ajax({
+
+                url:"{{ route('edit.product') }}",
+                method:"GET",
+                data:{id},
+                success:function(res){
+                    console.log(res);
+                    $('#up_id').val(res.data.id);
+                    $('#up_name').val(res.data.name);
+                    $('#up_product_cat').val(res.data.product_category);
+
+
+
+                }
+
+
+            })
+        });
+
+        // for update
+        $(document).on('click','.product_update',function(e){
+
+            e.preventDefault();
+            let id=$('#up_id').val();
+            let name=$('#up_name').val();
+            let products=$('#up_product_cat').val();
+            $.ajax({
+                url:"{{ route('update.product') }}",
+                method:"PUT",
+                data:{
+                    id,
+                    name,
+                    products
+                },
+                success:function(res){
+                    if(res.status=='success'){
+                        $('#upModal').modal('hide');
+                        $('#update')[0].reset();
+                        $('.table').load(location.href + ' .table');
+
+                    }
+                }
+
+
+
+
+            });
+
+
+        })
+
+        // for Delete
+        $(document).on('click','.delete_modal',function(e){
+            e.preventDefault();
+            let id=$(this).data('id');
+            if (confirm('Are you sure to delte list??')){
+
+            $.ajax({
+
+                url:"{{ route('delete.product') }}",
+                method:"DELETE",
+                data:{id},
+                success:function(res){
+                    if(res.status=='success'){
+                        $('.table').load(location.href + ' .table');
+
+                    }
+                }
+
+            });
+        }
+        })
+
+
     });
 </script>

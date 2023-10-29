@@ -1,8 +1,8 @@
   <!-- Modal -->
   <div class="modal fade" id="updatemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <form action=""method="post" id="update">
-     
+      <form action=""method="put" id="update">
+
           @csrf
           <input type="hidden" id="up_id">
           <div class="modal-dialog">
@@ -16,7 +16,7 @@
 
                      </div>
                     {{-- <input type="hidden" name="modal_id" value=""> --}}
-                     
+
                     <div class="mb-3">
                           <label for="title" class="form-label">Title</label>
                           <input type="text" class="form-control" id="up_title" name="up_title">

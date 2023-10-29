@@ -47,7 +47,7 @@ class CategoryController extends Controller
         ]);
 
     }
-
+  // Edit
     public function Editlist(Request $request){
      $category=Category::findOrFail($request->id);
      return response()->json([

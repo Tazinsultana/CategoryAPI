@@ -33,13 +33,28 @@ class ProductController extends Controller
 
         ]);
     }
+
+    // for edit
+
+    public function EditProduct(Request $request){
+        // dd($request->all());
+    //    $product= Product::where('id',$request->id)->get();
+     $product=Product::find($request->id);
+       return response()->json([
+        'status'=> 'success',
+        'data'=>$product
+       ]);
+    }
+
+
+// For Update
     public function Update(Request $request)
     {
-        // dd($request->product);
+        // // dd($request->product);
         // dd($request->all());
 
         $name = $request->name;
-        $category = $request->products;
+        $product = $request->products;
 
 
         //         $product=Product::find($request->id);
@@ -70,7 +85,7 @@ class ProductController extends Controller
 
         Product::where('id',$request->id)->update([
             'name'=>$name,
-            'product_category'=>$category
+            'product_category'=>$product
         ]);
 
 
@@ -79,7 +94,7 @@ class ProductController extends Controller
             'status' => 'success'
         ]);
     }
-
+// For DELETE
     public function Delete(Request $request){
         // dd($request->all());
         Product::where('id',$request->id)->delete();
@@ -89,16 +104,6 @@ class ProductController extends Controller
     }
 
 
-    public function EditProduct(Request $request){
-        // dd($request->all());
-       $product= Product::where('id',$request->id)->select('id','name','product_category')->first();
 
-
-       return response()->json([
-        'status'=> 'success',
-
-        'data'=>$product
-       ]);
-    }
 
 }

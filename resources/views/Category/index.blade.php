@@ -30,7 +30,7 @@
                     <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addmodal">Add</a><br>
                     {{-- <a href="{{route('index')  }}" class="btn btn-primary">Product</a> --}}
                 </div>
-                <a href="{{route('index.product')  }}" class="btn btn-primary">Product</a>
+                <a href="{{route('index.product')  }}" class="btn btn-secondary">Product</a>
 
                 <div class="table-data">
 

@@ -14,12 +14,18 @@
 <body>
     <div class="container my-2">
         <div class="row">
-            <h2 class="my-3">List Of Product List</h2>
-            <div style="display:flex;justify-content:end">
-                <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add</a>
-            </div>
 
-            <div class="col my-3">
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-8">
+            <h2 class="my-4">List Of Product List</h2>
+            <div style="display:flex;justify-content:end">
+                <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add</a><br>
+            </div>
+            <a href="{{route('index')  }}" class="btn btn-secondary">Back</a>
+
+
                 <div class="table-data">
                     <table class="table table-hover">
 
@@ -36,13 +42,13 @@
                         <tbody ">
                          @foreach ($products as $key=> $product)
                             <tr>
-                                <th scope="{{ $key + 1 }}">2</th>
+                                <th >{{ $key+1 }}</th>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->product_category }}</td>
 
                                 <td>
-                                    <a href=""class="btn btn-success edit_modal" data-bs-toggle="modal"
-                                        data-bs-target="#updateModal" data-id="{{ $product->id }}">Edit</a>
+                                    <a href=""class="btn btn-success edit_product" data-bs-toggle="modal"
+                                        data-bs-target="#upModal" data-id="{{ $product->id }}">Edit</a>
 
                                     <a href="" class="btn btn-danger delete_modal" data-id="{{ $product->id }}">Delete</a>
                                 </td>
@@ -54,14 +60,15 @@
 
                 </div>
 
-            </div>
 
+        </div>
         </div>
     </div>
 
 
     </div>
     @include('product.product_modal')
+    @include('product.product_update')
     @include('product.product_ajax')
 
 
