@@ -19,8 +19,13 @@
 
                     </div>
                     <div class="mb-3">
-                        <label for="product_cat" class="form-label">Product Category</label>
-                        <input type="text" class="form-control" id="up_product_cat" name="up_product_cat">
+                        <label for="product_cat" class="form-label">Select Category</label>
+                        <select name=" " class="form-control" id='up_product_category'>
+                            @foreach ($categories as $key=>$category)
+                            <option value="{{ $key }}">{{ $category }}</option>
+
+                            @endforeach
+                        </select>
                     </div>
 
                 </div>

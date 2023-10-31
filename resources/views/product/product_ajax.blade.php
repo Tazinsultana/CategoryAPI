@@ -70,7 +70,8 @@
                     console.log(res);
                     $('#up_id').val(res.data.id);
                     $('#up_name').val(res.data.name);
-                    $('#up_product_cat').val(res.data.product_category);
+                    // $('#up_product_cat').val(res.data.product_category);
+                    $('#up_product_category').val(res.data.category_id);
 
 
 
@@ -86,14 +87,15 @@
             e.preventDefault();
             let id=$('#up_id').val();
             let name=$('#up_name').val();
-            let products=$('#up_product_cat').val();
+            let category_id=$('#up_product_category').val();
             $.ajax({
                 url:"{{ route('update.product') }}",
                 method:"PUT",
                 data:{
                     id,
                     name,
-                    products
+                    category_id
+
                 },
                 success:function(res){
                     if(res.status=='success'){

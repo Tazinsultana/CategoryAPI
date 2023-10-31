@@ -62,9 +62,11 @@ class ProductController extends Controller
     // for edit
 
     public function EditProduct(Request $request){
+
         // dd($request->all());
     //    $product= Product::where('id',$request->id)->get();
      $product=Product::find($request->id);
+    //  dd($product);
        return response()->json([
         'status'=> 'success',
         'data'=>$product
@@ -79,7 +81,7 @@ class ProductController extends Controller
         // dd($request->all());
 
         $name = $request->name;
-        $product = $request->products;
+        $product = $request->category_id;
 
 
         //         $product=Product::find($request->id);
@@ -110,7 +112,7 @@ class ProductController extends Controller
 
         Product::where('id',$request->id)->update([
             'name'=>$name,
-            'product_category'=>$product
+            'category_id'=>$product
         ]);
 
 
