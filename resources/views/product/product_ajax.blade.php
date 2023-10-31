@@ -19,7 +19,8 @@
         $(document).on('click', '.product_add', function(e) {
             e.preventDefault();
             let name = $('#name').val();
-            let product_category = $('#product_cat').val();
+            let category_id=$('#product_category').val();
+            // let product_category = $('#product_cat').val();
 
             // console.log(name,product_cat);
 
@@ -29,7 +30,8 @@
                 method: "POST",
                 data: {
                     name,
-                    product_category
+                    category_id
+                    // product_category
 
                 },
                 success: function(res) {

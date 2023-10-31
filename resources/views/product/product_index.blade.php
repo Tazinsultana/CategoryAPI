@@ -40,11 +40,11 @@
                             </tr>
                         </thead>
                         <tbody ">
-                         @foreach ($products as $key=> $product)
+                         @foreach ($products as $product)
                             <tr>
-                                <th >{{ $key+1 }}</th>
+                                <th >{{ $loop->iteration}}</th>
                                 <td>{{ $product->name }}</td>
-                                <td>{{ $product->product_category }}</td>
+                                <td>{{ $product->category->title }}</td>
 
                                 <td>
                                     <a href=""class="btn btn-success edit_product" data-bs-toggle="modal"

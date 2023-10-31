@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -9,23 +10,47 @@ class ProductController extends Controller
 {
     public function Index()
     {
-
-        $products = Product::latest()->get();
-        return view('product.product_index', compact('products'));
+        $categories=Category::where('is_active',true)->pluck('title','id');
+// dd($categories);
+        $products = Product::latest()->with(['category'])->get();
+        // dd($products);
+        return view('product.product_index', compact('products','categories'));
     }
 
     public function AddProduct(Request $request)
     {
         // dd($request->all());
+        // $categories=Category::all();
+        // return view('product.product_modal', compact('categories'));
 
-        $name = $request->name;
-        $product_cat = $request->product_category;
+        // $name = $request->name;
+        // $product_cat = $request->product_category;
 
-        Product::create([
-            'name' => $name,
-            'product_category' => $product_cat,
+        // Product::create([
+        //     'name' => $name,
+        //     'product_category' => $product_cat,
+
+        // ]);
+
+
+        // $category->products()->create([
+        //     'name' => $request->name,
+        //     'product_category'=> $request->$category->title,
+
+        // ]);
+        // Product::create([
+        //     'name'=> $request->name,
+        //     'category_id'=>$request->category_id
+
+        // ]);
+        $category=Category::where('id',$request->category_id)->first();
+        $category->products()->create([
+            'name'=>$request->name,
+            // 'category_id'=>$request->category_id
+
 
         ]);
+
 
 
         return response()->json([
