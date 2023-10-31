@@ -25,6 +25,7 @@ Route::post('/add-product',[ProductController::class,'AddProduct'])->name('add.p
 Route::get('/edit-product',[ProductController::class,'EditProduct'])->name('edit.product');
 Route::put('/update-product',[ProductController::class,'Update'])->name('update.product');
 Route::delete('/delete-product',[ProductController::class,'Delete'])->name('delete.product');
+Route::get('/filter-product',[ProductController:: class,'Filtering'])->name('filter.product');
 
 
 

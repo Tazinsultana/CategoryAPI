@@ -130,6 +130,30 @@ class ProductController extends Controller
         ]);
     }
 
+    public function Filtering(Request $request){
+
+        // dd($request->all());
+        $category=Category::where('id',$request->category_id)->get();
+
+        // dd($category);
+      $products=Product::where('name','like','%'.$request->filtering.'%')
+        ->orWhere('category_id','like','%'.$request->filtering.'%')
+        ->orderBy('id','desc')->with(['category'])->get();
+
+        // $category=Category::where('title','like','%'.$request->filtering.'%')
+        // ->orWhere('category_id','like','%'.$request->filtering.'%')
+        // ->orderBy('id','desc')->with(['products'])->get();
+
+
+        return response()->json([
+            'data'=> $products,
+            // 'category'=> $category,
+            'status'=>'success'
+        ]);
+
+
+    }
+
 
 
 

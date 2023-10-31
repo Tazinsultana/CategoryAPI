@@ -24,7 +24,8 @@
                 <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add</a><br>
             </div>
             <a href="{{route('index')  }}" class="btn btn-secondary">Back</a>
-
+            <input type="text" name="filter" id="filter" class="mb-3 my-3 form-control"
+            placeholder="Search Here..">
 
                 <div class="table-data">
                     <table class="table table-hover">
@@ -39,7 +40,7 @@
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody ">
+                        <tbody id="table_body">
                          @foreach ($products as $product)
                             <tr>
                                 <th >{{ $loop->iteration}}</th>
@@ -72,7 +73,7 @@
     @include('product.product_update')
     @include('product.product_ajax')
 
-  
+
 
 
 </body>

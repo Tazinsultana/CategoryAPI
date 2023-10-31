@@ -3,7 +3,7 @@
 </script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 <script>
     $.ajaxSetup({
         headers: {
@@ -203,6 +203,54 @@
             }
         })
 
+        // for Filtering
 
+        function filtering() {
+
+            let filtering = $('#filter').val();
+            // console.log(filtering);
+
+            $.ajax({
+                url: "{{ route('filter.product') }}",
+                method: "GET",
+                data: {
+                    filtering
+                },
+                success: function(res) {
+                    // console.log(res);
+                    const search = res.data;
+
+                    console.log(search);
+                    let r_search = '';
+                    $.each(search, function(key, item) {
+                        r_search += `<tr>
+                                <th >${key+1}</th>
+                                <td>${item.name}</td>
+                                <td>${item.category.title}</td>
+
+                                <td>
+                                    <a href=""class="btn btn-success edit_product" data-bs-toggle="modal"
+                                        data-bs-target="#upModal" data-id="${item.id}">Edit</a>
+
+                                    <a href="" class="btn btn-danger delete_modal" data-id="${item.id}">Delete</a>
+                                </td>
+                            </tr>`
+
+
+                    })
+
+                    $('#table_body').html(r_search);
+
+                }
+
+            })
+        }
+
+        $(document).on('keyup', function(e) {
+            e.preventDefault();
+            filtering();
+
+
+        });
     });
 </script>
