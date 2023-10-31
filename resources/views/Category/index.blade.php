@@ -86,9 +86,12 @@
             </div>
         </div>
     </div>
+    {!! Toastr::message() !!}
     @include('Category.add_modal')
     @include('Category.update_modal')
     @include('Category.ajax')
+
+
 
 
 </body>
