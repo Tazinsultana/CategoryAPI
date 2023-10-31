@@ -133,11 +133,14 @@ class ProductController extends Controller
     public function Filtering(Request $request){
 
         // dd($request->all());
-        $category=Category::where('id',$request->category_id)->get();
+        // $category=Category::where('id',$request->category_id)->get();
 
         // dd($category);
       $products=Product::where('name','like','%'.$request->filtering.'%')
-        ->orWhere('category_id','like','%'.$request->filtering.'%')
+        // ->orWhere('category_id','like','%'.$request->filtering.'%')
+        ->orWhereHas('category',function ($q) use ($request) {
+            $q->where('title','like','%'.$request->filtering.'%');
+        })
         ->orderBy('id','desc')->with(['category'])->get();
 
         // $category=Category::where('title','like','%'.$request->filtering.'%')
