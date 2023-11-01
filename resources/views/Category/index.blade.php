@@ -27,10 +27,14 @@
             <div class="col-md-8">
                 <h1 class="my-4"> Category List</h1>
                 <div style="display:flex;justify-content:end">
-                    <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addmodal">Add</a><br>
-                    {{-- <a href="{{route('index')  }}" class="btn btn-primary">Product</a> --}}
-                </div>
+                    <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addmodal">Add</a>
+
+                </div><br>
+
                 <a href="{{route('index.product')  }}" class="btn btn-secondary">Product</a>
+                {{-- <div style="display:flex;justify-content:end>
+                    <a href="{{ route('droup.product') }}" class="btn btn-primary">Next</a><br>
+                </div> --}}
 
                 <div class="table-data">
 

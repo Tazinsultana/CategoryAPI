@@ -19,17 +19,28 @@
             </div>
             <div class="col-md-8">
                 <h2 class="my-4">List Of Product List</h2>
-                <div style="display:flex;justify-content:end">
-                    <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add</a><br>
-                </div>
+
                 <a href="{{ route('index') }}" class="btn btn-secondary">Back</a>
+                <div class="flex w-full justify-center  sm:justify-start ">
+                    <div>
+                        <h1 class=" font-semibold py-2 my-2 ">Category </h1>
+                        <select name="category" id="category" class="border border-border__primary  rounded-md bg-gray-50">
+                            <option value="">ALL</option>
+                            {{-- if(count($categories)>0) --}}
 
-                <div style="display:flex;justify-content:end">
-                    <a href="{{ route('droup.product') }}" class="btn btn-primary">Next</a><br>
+                            @foreach ($categories as $key=> $category)
+                            <option value="{{ $key}}">{{ $category}}</option>
+                            @endforeach
+
+                        </select>
+
+
+                    </div>
+
                 </div>
-                <input type="text" name="filter" id="filter" class="mb-3 my-3 form-control" placeholder="Search Here..">
 
-                <div class="table-data">
+
+                <div class="table-data my-3">
                     <table class="table table-hover">
 
 
@@ -69,10 +80,12 @@
 
 
     </div>
+    @include('DropMenu.dropajax')
     {!! Toastr::message() !!}
-    @include('product.product_modal')
-    @include('product.product_update')
-    @include('product.product_ajax')
+
+
+
+
 
 
 </body>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\DropMenuController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +27,11 @@ Route::get('/edit-product',[ProductController::class,'EditProduct'])->name('edit
 Route::put('/update-product',[ProductController::class,'Update'])->name('update.product');
 Route::delete('/delete-product',[ProductController::class,'Delete'])->name('delete.product');
 Route::get('/filter-product',[ProductController:: class,'Filtering'])->name('filter.product');
+
+
+
+Route::get('/droup',[DropMenuController::class,'Index'])->name('droup.product');
+// Route::get('/select-product',[DropMenuController::class,'SelectProuct'])->name('select.product');
 
 
 
