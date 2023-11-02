@@ -218,7 +218,7 @@
                         },
                         success: function(res) {
                             // console.log(res);
-                            const search = res.data;
+                            const search = res.data.products;
 
                             console.log(search);
                             let r_search = '';

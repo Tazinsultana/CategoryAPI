@@ -31,7 +31,7 @@ Route::get('/filter-product',[ProductController:: class,'Filtering'])->name('fil
 
 
 Route::get('/droup',[DropMenuController::class,'Index'])->name('droup.product');
-// Route::get('/select-product',[DropMenuController::class,'SelectProuct'])->name('select.product');
+Route::get('/select-product',[DropMenuController::class,'SelectProuct'])->name('select.product');
 
 
 
