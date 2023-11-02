@@ -24,9 +24,9 @@
                 </div>
                 <a href="{{ route('index') }}" class="btn btn-secondary">Back</a>
 
-                {{-- <div style="display:flex;justify-content:end">
+                <div style="display:flex;justify-content:end">
                     <a href="{{ route('droup.product') }}" class="btn btn-primary">Next</a><br>
-                </div> --}}
+                </div>
                 <input type="text" name="filter" id="filter" class="mb-3 my-3 form-control" placeholder="Search Here..">
 
                 <div class="flex w-full justify-center  sm:justify-start ">
@@ -34,7 +34,6 @@
                         <h1 class=" font-semibold py-2 my-4 ">Category </h1>
                         <select name="category" id="category" class="border border-border__primary  rounded-md bg-gray-50">
                             <option value="">ALL</option>
-                            {{-- if(count($categories)>0) --}}
 
                             @foreach ($categories as $key=> $category)
                             <option value="{{ $key}}">{{ $category}}</option>

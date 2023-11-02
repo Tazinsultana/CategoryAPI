@@ -35,7 +35,7 @@ class DropMenuController extends Controller
     public function Index()
     {
 
-        $categories = Category::where('is_active', true)->pluck('title', 'id');
+        $categories = Category::where('is_active',true)->get();
         $products = Product::latest()->with(['category'])->get();
 
         return view('DropMenu.index', compact('categories', 'products'));
@@ -43,20 +43,19 @@ class DropMenuController extends Controller
     public function SelectProuct(Request $request)
 
     {
-        dd($request->all());
+        // dd($request->all());
 
-        $products = Product::where('category_id', 'like', '%' . $request->category . '%')
+        $products = Product::where(function ($q) use ($request) {
 
-            ->orWhereHas('category', function ($q) use ($request) {
-                $q->where('title', 'like', '%' . $request->category . '%');
+                if(isset($request->category) && ($request->category != null))
+                {
+                    $q->whereIn('category_id', $request->category);
+                }
+
             })
             ->orderBy('id', 'desc')->with(['category'])->get();
-            // $category = Category::where('title', 'like', '%' . $request->category . '%')
-            // ->orderBy('id', 'desc')->get();
-            // dd($category);
-            // dd($products);
 
-
+            dd($products);
         return response()->json([
             'data' => $products,
             'status' => 'success'

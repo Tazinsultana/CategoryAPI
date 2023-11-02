@@ -28,7 +28,7 @@
                 },
                 success: function(res) {
                     console.log(res);
-                    const products = res.data.products;
+                    const products = res.data;
                     // console.log(products);
                     let r_res = " ";
 
@@ -58,7 +58,7 @@
 
         }
 
-        $(document).on('change', function(e) {
+        $(document).on('change','#checkbox', function(e) {
             e.preventDefault();
             drop();
 

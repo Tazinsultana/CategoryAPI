@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
     <title>Product Ajax Crud</title>
@@ -21,28 +22,18 @@
                 <h2 class="my-4">List Of Product List</h2>
 
                 <a href="{{ route('index') }}" class="btn btn-secondary">Back</a>
-                <div class="flex w-full justify-center  sm:justify-start ">
-                    <div>
-                        <h1 class=" font-semibold py-2 my-2 ">Category </h1>
-                        <select name="category" id="category" class="border border-border__primary  rounded-md bg-gray-50">
-                            <option value="">ALL</option>
-                            {{-- if(count($categories)>0) --}}
 
-                            @foreach ($categories as $key=> $category)
-                            <option value="{{ $key}}">{{ $category}}</option>
-                            @endforeach
-
-                        </select>
-
-
-                    </div>
-
+                <div class="form-check my-4">
+                    <label class="form-check-label" for="flexCheckIndeterminate">
+                        @foreach ($categories as $category)
+                            <input class="form-check-input" type="checkbox" id="checkbox" name="checkbox[]">
+                            <option value="{{ $category->id }}">{{ $category->title }} </option>
+                        @endforeach
+                    </label>
                 </div>
-
 
                 <div class="table-data my-3">
                     <table class="table table-hover">
-
 
                         <thead>
                             <tr>
@@ -55,17 +46,19 @@
                         </thead>
                         <tbody id="table_body">
                             @foreach ($products as $product)
-                            <tr>
-                                <th>{{ $loop->iteration }}</th>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->category->title }}</td>
+                                <tr>
+                                    <th>{{ $loop->iteration }}</th>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->category->title }}</td>
 
-                                <td>
-                                    <a href="" class="btn btn-success edit_product" data-bs-toggle="modal" data-bs-target="#upModal" data-id="{{ $product->id }}">Edit</a>
+                                    <td>
+                                        <a href="" class="btn btn-success edit_product" data-bs-toggle="modal"
+                                            data-bs-target="#upModal" data-id="{{ $product->id }}">Edit</a>
 
-                                    <a href="" class="btn btn-danger delete_modal" data-id="{{ $product->id }}">Delete</a>
-                                </td>
-                            </tr>
+                                        <a href="" class="btn btn-danger delete_modal"
+                                            data-id="{{ $product->id }}">Delete</a>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
 
