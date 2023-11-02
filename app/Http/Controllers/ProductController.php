@@ -10,11 +10,11 @@ class ProductController extends Controller
 {
     public function Index()
     {
-        $categories=Category::where('is_active',true)->pluck('title','id');
-// dd($categories);
+        $categories = Category::where('is_active', true)->pluck('title', 'id');
+        // dd($categories);
         $products = Product::latest()->with(['category'])->get();
         // dd($products);
-        return view('product.product_index', compact('products','categories'));
+        return view('product.product_index', compact('products', 'categories'));
     }
 
     public function AddProduct(Request $request)
@@ -43,9 +43,9 @@ class ProductController extends Controller
         //     'category_id'=>$request->category_id
 
         // ]);
-        $category=Category::where('id',$request->category_id)->first();
+        $category = Category::where('id', $request->category_id)->first();
         $category->products()->create([
-            'name'=>$request->name,
+            'name' => $request->name,
             // 'category_id'=>$request->category_id
 
 
@@ -61,20 +61,21 @@ class ProductController extends Controller
 
     // for edit
 
-    public function EditProduct(Request $request){
+    public function EditProduct(Request $request)
+    {
 
         // dd($request->all());
-    //    $product= Product::where('id',$request->id)->get();
-     $product=Product::find($request->id);
-    //  dd($product);
-       return response()->json([
-        'status'=> 'success',
-        'data'=>$product
-       ]);
+        //    $product= Product::where('id',$request->id)->get();
+        $product = Product::find($request->id);
+        //  dd($product);
+        return response()->json([
+            'status' => 'success',
+            'data' => $product
+        ]);
     }
 
 
-// For Update
+    // For Update
     public function Update(Request $request)
     {
         // // dd($request->product);
@@ -110,9 +111,9 @@ class ProductController extends Controller
         //     'product_category' => $category
         // ]);
 
-        Product::where('id',$request->id)->update([
-            'name'=>$name,
-            'category_id'=>$product
+        Product::where('id', $request->id)->update([
+            'name' => $name,
+            'category_id' => $product
         ]);
 
 
@@ -121,24 +122,34 @@ class ProductController extends Controller
             'status' => 'success'
         ]);
     }
-// For DELETE
-    public function Delete(Request $request){
+    // For DELETE
+    public function Delete(Request $request)
+    {
         // dd($request->all());
-        Product::where('id',$request->id)->delete();
+        Product::where('id', $request->id)->delete();
         return response()->json([
-            'status'=> 'success'
+            'status' => 'success'
         ]);
     }
 
-    public function Filtering(Request $request){
+    public function Filtering(Request $request)
+    {
 
         // dd($request->all());
-      $products=Product::where('name','like','%'.$request->filtering.'%')
-        // ->orWhere('category_id','like','%'.$request->filtering.'%')
-        ->orWhereHas('category',function ($q) use ($request) {
-            $q->where('title','like','%'.$request->filtering.'%');
-        })
-        ->orderBy('id','desc')->with(['category'])->get();
+        $products = Product::where('name', 'like', '%' . $request->filtering . '%')
+            // ->where('category_id',$request->category)
+            ->where(function ($q) use ($request) {
+                if ($request->category) {
+                    $q->where('category_id', $request->category);
+                }
+            })
+            // ->orWhereHas('category',function ($q) use ($request) {
+            //     $q->where('title','like','%'.$request->filtering.'%');
+            //     if ($request->category) {
+            //         $q->where('id', $request->category);
+            //     }
+            // })
+            ->orderBy('id', 'desc')->with(['category'])->get();
 
         // $category=Category::where('title','like','%'.$request->filtering.'%')
         // ->orWhere('category_id','like','%'.$request->filtering.'%')
@@ -146,13 +157,8 @@ class ProductController extends Controller
 
 
         return response()->json([
-            'data'=> $products,
-            'status'=>'success'
+            'data' => $products,
+            'status' => 'success'
         ]);
-
-
     }
-
-
-
 }

@@ -41,7 +41,9 @@ class DropMenuController extends Controller
         return view('DropMenu.index', compact('categories', 'products'));
     }
     public function SelectProuct(Request $request)
+
     {
+        dd($request->all());
 
         $products = Product::where('category_id', 'like', '%' . $request->category . '%')
 

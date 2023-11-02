@@ -30,7 +30,8 @@
                         method: "POST",
                         data: {
                             name,
-                            category_id
+                            category_id,
+                            // _token:'{{ csrf_token() }}',
                             // product_category
 
                         },
@@ -208,17 +209,19 @@
                 function filtering() {
 
                     let filtering = $('#filter').val();
-                    // console.log(filtering);
+                    let category=$('#category').val();
+                    console.log(filtering);
 
                     $.ajax({
                         url: "{{ route('filter.product') }}",
                         method: "GET",
                         data: {
-                            filtering
+                            filtering,
+                            category
                         },
                         success: function(res) {
-                            // console.log(res);
-                            const search = res.data.products;
+                            console.log(res);
+                            const search = res.data;
 
                             console.log(search);
                             let r_search = '';
@@ -246,9 +249,18 @@
                     })
                 }
 
-                $(document).on('keyup', function(e) {
+                $(document).on('keyup','#filter',function(e) {
                     e.preventDefault();
                     filtering();
+
+
+
+                });
+
+                $(document).on('change','#category',function(e) {
+                    e.preventDefault();
+                    filtering();
+
 
 
                 });

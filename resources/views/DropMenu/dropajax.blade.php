@@ -58,14 +58,6 @@
 
         }
 
-
-
-
-
-
-
-
-
         $(document).on('change', function(e) {
             e.preventDefault();
             drop();
