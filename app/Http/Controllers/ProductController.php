@@ -137,24 +137,51 @@ class ProductController extends Controller
 
         // dd($request->all());
         $products = Product::where('name', 'like', '%' . $request->filtering . '%')
+
+            // search by title
             // ->where('category_id',$request->category)
-            ->where(function ($q) use ($request) {
-                if ($request->category) {
-                    $q->where('category_id', $request->category);
-                }
-            })
+            // search for drop down menu
+            // ->where(function ($q) use ($request) {
+            //     if ($request->category) {
+            //         $q->where('category_id', $request->category);
+            //     }
+            // })
+            // search by title
             // ->orWhereHas('category',function ($q) use ($request) {
             //     $q->where('title','like','%'.$request->filtering.'%');
             //     if ($request->category) {
             //         $q->where('id', $request->category);
             //     }
             // })
+            // ->orderBy('id', 'desc')->with(['category'])->get();
+
+            // $category=Category::where('title','like','%'.$request->filtering.'%')
+            // ->orWhere('category_id','like','%'.$request->filtering.'%')
+            // ->orderBy('id','desc')->with(['products'])->get();
+
+
+
+
+            // $products = Product::where(function ($q) use ($request) {
+
+            //     if(isset($request->category) && (count($request->category ?? [])))
+            //     {
+            //         $q->whereIn('category_id', $request->category);
+            //     }
+
+            // })
+            // ->orderBy('id', 'desc')->with(['category'])->get();
+
+
+
+            // search by checkbox
+            ->where(function ($q) use ($request) {
+
+                if (isset($request->category) && (count($request->category ?? []))) {
+                    $q->whereIn('category_id', $request->category);
+                }
+            })
             ->orderBy('id', 'desc')->with(['category'])->get();
-
-        // $category=Category::where('title','like','%'.$request->filtering.'%')
-        // ->orWhere('category_id','like','%'.$request->filtering.'%')
-        // ->orderBy('id','desc')->with(['products'])->get();
-
 
         return response()->json([
             'data' => $products,
