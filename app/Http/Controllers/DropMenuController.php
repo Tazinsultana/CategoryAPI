@@ -7,6 +7,8 @@ use App\Models\Category;
 
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isEmpty;
+
 class DropMenuController extends Controller
 {
 
@@ -43,11 +45,22 @@ class DropMenuController extends Controller
     public function SelectProuct(Request $request)
 
     {
-        // dd($request->all());
+        // if($request->category){
+        //     dd(count($request->category));
+
+        // }
+        // else {
+        //     dd(count([]));
+        // }
+        // dd(count($request->category ?? [ ]));//null colasion operator
+
+
+
+
 
         $products = Product::where(function ($q) use ($request) {
 
-                if(isset($request->category) && ($request->category != null))
+                if(isset($request->category) && (count($request->category ?? [])))
                 {
                     $q->whereIn('category_id', $request->category);
                 }
@@ -55,7 +68,7 @@ class DropMenuController extends Controller
             })
             ->orderBy('id', 'desc')->with(['category'])->get();
 
-            dd($products);
+            // dd($products);
         return response()->json([
             'data' => $products,
             'status' => 'success'

@@ -17,7 +17,19 @@
 
         function drop() {
 
-            let category = $('#category').val();
+            let categoriesObj = $('input[name="checkbox[]"]');
+            let category = [];
+            $.each(categoriesObj, function(key, item) {
+                // console.log(item);
+                if ($(item).is(':checked')) {
+                    const category_id = $(item).val();
+                    // console.log(category_id);
+
+                    category.push(category_id);
+                }
+                // console.log(category_id);
+            })
+            // console.log(category);
 
 
             $.ajax({
@@ -27,7 +39,7 @@
                     category
                 },
                 success: function(res) {
-                    console.log(res);
+                    // console.log(res);
                     const products = res.data;
                     // console.log(products);
                     let r_res = " ";
@@ -58,7 +70,7 @@
 
         }
 
-        $(document).on('change','#checkbox', function(e) {
+        $(document).on('change', 'input[name="checkbox[]"]', function(e) {
             e.preventDefault();
             drop();
 

@@ -24,12 +24,12 @@
                 <a href="{{ route('index') }}" class="btn btn-secondary">Back</a>
 
                 <div class="form-check my-4">
-                    <label class="form-check-label" for="flexCheckIndeterminate">
-                        @foreach ($categories as $category)
-                            <input class="form-check-input" type="checkbox" id="checkbox" name="checkbox[]">
-                            <option value="{{ $category->id }}">{{ $category->title }} </option>
-                        @endforeach
-                    </label>
+                    @foreach ($categories as $category)
+                        <label class="form-check-label" for="flexCheckIndeterminate">
+                            <input class="form-check-input" type="checkbox" name="checkbox[]"
+                                value="{{ $category->id }}">{{ $category->title }}
+                        </label><br>
+                    @endforeach
                 </div>
 
                 <div class="table-data my-3">
